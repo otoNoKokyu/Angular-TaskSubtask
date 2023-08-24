@@ -1,35 +1,39 @@
-<div class="box-border mx-auto w-2/4 pt-8 h-[700px] shadow-2xl">
-  <div class="inline-block half-width ">
+<div class="box-border mx-auto w-2/4 pt-8 h-[700px] shadow-2xl flex">
+  <div class="half-width ">
     <h3 class="text-center">
       Add Task
     </h3>
     <div class="box-border pt-3 h-[600px] ">
-      <div class="flex justify-center gap-2 h-[30px]">
-        <input class="w-3/4 rounded-md " type="text" id="name" name="name" placeholder=" Add task">
-        <button class=" rounded-md ">Add</button>
-      </div>
+        <form class="flex justify-center gap-1 h-[30px]"  (ngSubmit)="onSubmit()">
+          <input class=" rounded-sm border-gray-400  w-4/5" type="text" [(ngModel)] = "title" id="name" name="name" placeholder=" Add task">
+          <button class="rounded-sm" type="submit" >Add</button>
+        </form>
 
-      <div class="">
 
-        <ul class="list-none p-0  ">
-          <li class="w-[405px] ml-7 mb-5 ">
+      <div class=" w-[454px]" >
+
+        <ul *ngFor="let item of arr"  class="flex justify-start list-none p-0 ">
+          <li class="w-[415px] ml-5 mb-1">
             <div class="border border-solid border-black
-             rounded-md h-[25px] ">
+             rounded-sm h-[25px] ">
+             <div class="flex h-full items-center">
+              {{item}}
+             </div>
+
+            </div>
+          </li>
+          <!-- <li class="w-[415px] ml-5 mb-5">
+            <div class="border border-solid border-black
+             rounded-sm h-[25px] ">
               YOOO
             </div>
           </li>
-          <li class="w-[405px] ml-7 mb-5">
+          <li class="w-[415px] ml-5 mb-5">
             <div class="border border-solid border-black
-             rounded-md h-[25px] ">
+             rounded-sm h-[25px] ">
               YOOO
             </div>
-          </li>
-          <li class="w-[405px] ml-7 ">
-            <div class="border border-solid border-black
-             rounded-md h-[25px] ">
-              YOOO
-            </div>
-          </li>
+          </li> -->
         </ul>
       </div>
 
@@ -39,7 +43,7 @@
     </div>
 
   </div>
-  <div class="inline-block half-width">
+  <div class=" half-width">
     <h3 class="text-center">
       Add Subtask
     </h3>
