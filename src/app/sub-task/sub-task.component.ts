@@ -28,7 +28,11 @@ export class SubTaskComponent {
   }
   ngOnChanges(changes: SimpleChanges) {
     console.log('OnChanges');
-    // if()
+    const {task} = changes
+    const{previousValue, currentValue} = task
+    if(previousValue.length){
+      if(previousValue[0].id !==)
+    }
     console.log(changes);
   }
 
