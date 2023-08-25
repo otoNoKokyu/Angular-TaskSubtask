@@ -12,28 +12,17 @@
 
       <div class=" w-[454px]" >
 
-        <ul *ngFor="let item of arr"  class="flex justify-start list-none p-0 ">
-          <li class="w-[415px] ml-5 mb-1">
-            <div class="border border-solid border-black
+        <ul  *ngFor="let item of arr"  class="flex justify-start list-none p-0 ">
+          <li  class="w-[415px] ml-5 mb-1">
+            <div  (click)="handleSlecting(item)"class="border border-solid border-black
              rounded-sm h-[25px] ">
-             <div class="flex h-full items-center">
-              {{item}}
+             <div  [ngClass]="item.isSelected?'bg-slate-400':'bg-white'" class="flex h-full items-center justify-around ">
+              {{item.title}}
              </div>
 
             </div>
           </li>
-          <!-- <li class="w-[415px] ml-5 mb-5">
-            <div class="border border-solid border-black
-             rounded-sm h-[25px] ">
-              YOOO
-            </div>
-          </li>
-          <li class="w-[415px] ml-5 mb-5">
-            <div class="border border-solid border-black
-             rounded-sm h-[25px] ">
-              YOOO
-            </div>
-          </li> -->
+
         </ul>
       </div>
 
@@ -44,13 +33,7 @@
 
   </div>
   <div class=" half-width">
-    <h3 class="text-center">
-      Add Subtask
-    </h3>
-    <div class="box-border  pt-3 h-[600px] ">
-      yo
 
-    </div>
-
+<app-sub-task [task] = "arr"></app-sub-task>
   </div>
 </div>
