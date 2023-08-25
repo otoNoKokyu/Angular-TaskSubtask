@@ -39,6 +39,15 @@ export class AppComponent implements OnInit{
       }
     });
   }
+  receiveChildData(data: any){
+    this.arr.forEach(function(e:any){
+      if(e.id === data.id){
+        e.subTasks.push(data.subtask)
+        console.log(e)
+      }
+    })
+
+  }
   childSubtask(){
     return this.arr.filter((e: { isSelected: any; })=>e.isSelected)
   }

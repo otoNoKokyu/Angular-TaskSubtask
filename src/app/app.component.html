@@ -34,6 +34,6 @@
   </div>
   <div class=" half-width">
 
-<app-sub-task [task] = "childSubtask()"></app-sub-task>
+<app-sub-task [task] = "childSubtask()" (outputFromChild) = "receiveChildData($event)"></app-sub-task>
   </div>
 </div>
