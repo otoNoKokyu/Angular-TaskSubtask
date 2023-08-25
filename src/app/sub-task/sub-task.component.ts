@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-sub-task',
@@ -7,9 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class SubTaskComponent {
 
-  subTaskArr:any = []
+  // subTaskArr:any = []
   
-  subTask: string = ""
+  subTaskArr: any = []
+  subTaskName: string = ""
 
 
   @Input() task: any
@@ -17,16 +18,18 @@ export class SubTaskComponent {
   
 
   onSubmit(){
-    if(this.task.length){
-      
-      console.log(this.task)
-      let Obj = {
-        taskName: this.task[0].title,
-        taskId: this.task[0].id, 
-        subTaskName: this.subTask
-      }
-      this.subTaskArr.push(Obj)
+
+    if(this.subTaskName!== ""){
+      this.subTaskArr.push(this.subTaskName)
+      this.task[0].subTasks = this.subTaskArr
     }
+    console.log(this.task[0].subTasks)
+
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('OnChanges');
+    // if()
+    console.log(changes);
   }
 
 

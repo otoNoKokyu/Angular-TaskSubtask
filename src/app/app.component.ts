@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
     if(!this.title || this.title !== "Add a Task" ) {
       const id = slug()
 
-      this.arr.push({id: id, title: this.title, isSelected: this.isSelected})
+      this.arr.push({id: id, title: this.title, isSelected: this.isSelected, subTasks:[]})
       this.title = ""
     // console.log(this.arr)
 
@@ -38,6 +38,9 @@ export class AppComponent implements OnInit{
 
       }
     });
+  }
+  childSubtask(){
+    return this.arr.filter((e: { isSelected: any; })=>e.isSelected)
   }
 
   ngOnInit(): void {
