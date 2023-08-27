@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {slug} from "cuid"
+import { TaskSubtaskService } from './task-subtask.service';
 
 @Component({
   selector: 'app-root',
@@ -7,22 +8,17 @@ import {slug} from "cuid"
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+
+  constructor(private taskService: TaskSubtaskService){}
   title = '';
-  isSelected = false
   arr: any = []
 
-
-  // selectedTask () : any {
-  //   return this.arr.filter((e: { isSelected: any; })=>e.isSelected)
-  // }
   onSubmit(){
 
-    if(!this.title || this.title !== "Add a Task" ) {
-      const id = slug()
+    if(this.title && this.title !== "Add a Task" ) {
 
-      this.arr.push({id: id, title: this.title, isSelected: this.isSelected, subTasks:[]})
-      this.title = ""
-    // console.log(this.arr)
+      this.taskService.addTask(this.title)
+      this.title =''
 
     }
     else {
@@ -30,29 +26,21 @@ export class AppComponent implements OnInit{
     }
   }
   handleSlecting(item:any):void{
-    this.arr.forEach((element: { id: any; isSelected: boolean; }) => {
-      if(element.id === item.id) {
-        element.isSelected = true
-      }else{
-        element.isSelected = false
-
-      }
-    });
+    this.taskService.handleSlecting(item)
   }
-  receiveChildData(data: any){
-    this.arr.forEach(function(e:any){
-      if(e.id === data.id){
-        e.subTasks.push(data.subtask)
-        console.log(e)
-      }
-    })
+  receiveChildData(data: any): void{
+  
+    const { task, subTaskName} = data
+    this.taskService.addSubTask(task, subTaskName)
+
 
   }
   childSubtask(){
-    return this.arr.filter((e: { isSelected: any; })=>e.isSelected)
+    console.log(this.taskService.SelctedTask())
+    return this.taskService.SelctedTask()
   }
 
   ngOnInit(): void {
-    
+    this.arr = this.taskService.getTasks()
   }
 }

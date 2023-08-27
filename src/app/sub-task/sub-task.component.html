@@ -1,5 +1,5 @@
 <h3 class="text-center">
-    {{task[0]?task[0].title:"Select a Subtask"}}
+    {{task?.title || "Select a Subtask"}}
   </h3>
   <div class="box-border pt-3 h-[600px] ">
     <form class="flex justify-center gap-1 h-[30px]"  (ngSubmit)="onSubmit()">
