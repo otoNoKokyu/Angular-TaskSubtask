@@ -32,9 +32,9 @@ export class TaskSubtaskService {
   getTasks(): Task[]{
     return this.tasks
   }
-  addSubTask(task: Task, subTask: string){
+  addSubTask(taskId: string, subTask: string){
     this.tasks.forEach(function(e:Task){
-      if(e.id === task.id){
+      if(e.id === taskId){
         e.subTasks.push(subTask)
       }
     })
@@ -42,17 +42,9 @@ export class TaskSubtaskService {
 
     
   }
-  handleSlecting(item: Task):void{
-    this.tasks.forEach((element: { id: any; isSelected: boolean; }) => {
-      if(element.id === item.id) {
-        element.isSelected = true
-      }else{
-        element.isSelected = false
+  findSubTaskById(id: string): any{
+    const tasksArr = this.tasks.find(e=>e.id===id) || {subTasks: []}
+    return tasksArr.subTasks 
 
-      }
-    });
-  }
-  SelctedTask(): Task {
-    return this.tasks.filter((e: { isSelected: any; })=>e.isSelected)[0]
   }
 }

@@ -1,37 +1,43 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {TaskSubtaskService} from "../task-subtask.service"
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sub-task',
   templateUrl: './sub-task.component.html',
   styleUrls: ['./sub-task.component.css']
 })
-export class SubTaskComponent  {
+export class SubTaskComponent implements OnInit  {
 
-
+  taskId = ''
   subTaskName: string = ""
+  subTaskArr : [] = []
 
-
-
-  @Input() task: any = []
-  @Output() outputFromChild: EventEmitter<any> = new EventEmitter();
-  // subTaskArr: any = []
-
-
+  constructor(private taskSubTaskService: TaskSubtaskService, private route: ActivatedRoute){}
 
 
   onSubmit() {
 
     if (this.subTaskName !== "") {
 
-      this.outputFromChild.emit({task: this.task, subTaskName: this.subTaskName});
+      // this.outputFromChild.emit({task: this.task, subTaskName: this.subTaskName});
+      this.taskSubTaskService.addSubTask(this.taskId,this.subTaskName)
       this.subTaskName = ""
     }
   }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //   this.subTaskArr = this.task ?.subTasks || []
-  //   console.log("oninit", this.task)
-  // }
+  ngOnInit(): void {
+    // this.route.params.subscribe(params => {
+    //   this.taskId = +params['taskId'];
+    // });
+    this.route.params.subscribe(params=>{
+      console.log(params)
+      this.taskId = params['id']
+      this.subTaskArr = this.taskSubTaskService.findSubTaskById(params['id'] )
+
+    })
+    
+  }
 
 
 }
