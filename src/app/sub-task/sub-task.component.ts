@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
   templateUrl: './sub-task.component.html',
   styleUrls: ['./sub-task.component.css']
 })
-export class SubTaskComponent implements OnChanges  {
+export class SubTaskComponent  {
 
 
   subTaskName: string = ""
@@ -14,7 +14,7 @@ export class SubTaskComponent implements OnChanges  {
 
   @Input() task: any = []
   @Output() outputFromChild: EventEmitter<any> = new EventEmitter();
-  subTaskArr: any = []
+  // subTaskArr: any = []
 
 
 
@@ -28,10 +28,10 @@ export class SubTaskComponent implements OnChanges  {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.subTaskArr = this.task ?.subTasks || []
-    console.log("oninit", this.task)
-  }
+  // ngOnChanges(changes: SimpleChanges) {
+  //   this.subTaskArr = this.task ?.subTasks || []
+  //   console.log("oninit", this.task)
+  // }
 
 
 }
