@@ -6,8 +6,10 @@ import {TaskSubtaskService} from './task-subtask.service'
 import { SubTaskComponent } from './sub-task/sub-task.component';
 import { TaskComponent } from './task/task.component';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 const routes: Routes = [
-  { path: '', component: TaskComponent }, // Default route
+  { path: '', component: LoginComponent }, // Default route
+  { path: 'task', component: TaskComponent }, // Default route
   { path: 'subtask/:id', component: SubTaskComponent },
 ];
 
@@ -15,7 +17,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     SubTaskComponent,
-    TaskComponent
+    TaskComponent,
+    LoginComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

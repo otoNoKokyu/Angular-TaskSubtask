@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskSubtaskService } from '../task-subtask.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-task',
@@ -8,7 +10,7 @@ import { TaskSubtaskService } from '../task-subtask.service';
 })
 export class TaskComponent  implements OnInit{
 
-  constructor(private taskService: TaskSubtaskService){}
+  constructor(private taskService: TaskSubtaskService,private router: Router){}
   title = '';
   arr: any = []
 
@@ -23,6 +25,9 @@ export class TaskComponent  implements OnInit{
     else {
       alert("please provide proper input")
     }
+  }
+  navigateToSubtask(id: string){
+    this.router.navigate(['subtask', id])
   }
 
 

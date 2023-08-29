@@ -20,7 +20,7 @@
                 <div class="ml-3">
                   {{item.title}}
                 </div>
-                <button [routerLink]="['subtask', item.id]" class="h-[28px] relative left-[5px] bottom-[1px] rounded-lg">show sub-tasks</button>
+                <button (click)="navigateToSubtask(item.id)" class="h-[28px] relative left-[5px] bottom-[1px] rounded-lg">show sub-tasks</button>
                </div>
                <!-- <button>show sub-tasks</button> -->
   
