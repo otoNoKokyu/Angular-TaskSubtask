@@ -1,17 +1,23 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements AfterViewInit {
-  @ViewChild("myForm") form : any
+export class LoginComponent implements OnInit  {
+  
+  title = "ReactiveForms"
+  reactiveForm: FormGroup;
   onSubmit(){
-    console.log(this.form.value)
+    console.log(this.reactiveForm.value)
   }
-  ngAfterViewInit(){
-    // this.form
-  }	
+  ngOnInit(): void {
+    this.reactiveForm = new FormGroup({
+      email: new FormControl(null,[Validators.required, Validators.email]),
+      password: new FormControl(null, Validators.required)
+    })
+  }
+   
 }
