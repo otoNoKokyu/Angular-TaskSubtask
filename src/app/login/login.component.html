@@ -1,23 +1,45 @@
 <section class="h-screen flex items-center justify-center">
     <div class="w-3/6 h-2/4  flex  justify-center shadow-lg">
-        <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" class="flex flex-col w-3/6 ">
+        <form  ngDefaultControl [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" class="flex flex-col w-3/6 ">
         <h3 class="font-serif font-normal text-3xl border-red">Login</h3>
 
-            <!-- <label class="mb-3" for="email">Email</label> -->
-            <input  class=" outline-0 mb-6 h-9  placeholder:pl-3  placeholder:italic
-             border-b border-solid border-black border-0"
-              type="email" name="email" placeholder="Enter your email" formControlName="email"  >
 
-            <!-- <label for="passwod">Password</label> -->
+            <div  class=" flex flex-col" formGroupName="details">
+                <input  class=" outline-0 mb-6 h-9  placeholder:pl-3  placeholder:italic
+                border-b border-solid border-black border-0"
+                 type="email" name="email" placeholder="Enter your email" formControlName="email"  >
+   
+               <!-- <label for="passwod">Password</label> -->
+               <input class=" outline-0 mb-6 h-9  placeholder:pl-3  placeholder:italic border-b
+                border-solid border-black border-0" 
+                type="password" name="password" placeholder="Enter your passwod"  formControlName="password">
+
+
+                  
+            <span style="color: red;" *ngIf="!reactiveForm.get('details.email').valid">
+                NO NO NOOO
+            </span>
+
+            </div>
+ 
+
+
             <input class=" outline-0 mb-6 h-9  placeholder:pl-3  placeholder:italic border-b
-             border-solid border-black border-0" 
-             type="password" name="password" placeholder="Enter your passwod"  formControlName="password">
+            border-solid border-black border-0" 
+            type="text" name="petName" placeholder="Enter your pet name"  formControlName="petName"> 
+
+            
+            <!-- <label class="mb-3" for="email">Email</label> -->
+
 
             <input class=" outline-0 w-1/5 h-8 rounded-lg bg-gray-200 font-light
              border-none placeholder:font-mono shadow-md" 
-             type="submit" value="Submit" [disabled]="!reactiveForm.valid"  >
+             type="submit" value="Submit" [disabled]="! reactiveForm.valid"  >
         </form>
         
     </div>
+
+
+
 
 </section> 
