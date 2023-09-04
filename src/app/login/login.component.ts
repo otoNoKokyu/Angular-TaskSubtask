@@ -9,17 +9,24 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit  {
   
   title = "ReactiveForms"
-  reactiveForm: FormGroup;
+  reactiveForm: FormGroup
+
+
   onSubmit(){
-    console.log(this.reactiveForm.value)
+
+    console.log(this.reactiveForm)
   }
+  emailValidator(email:FormControl){
+    if( email.value && email.value === "rumpa.dey@gmail.com") return {isEmailError:true }
+    return null
+  }
+  
   ngOnInit(): void {
     this.reactiveForm = new FormGroup({
       details: new FormGroup({
-        email: new FormControl(null,[Validators.required, Validators.email]),
-        password: new FormControl(null, Validators.required)
-      }),
-      petName: new FormControl(null,Validators.required)
+        email: new FormControl("",[Validators.required, Validators.email, this.emailValidator]),
+        password: new FormControl("", [Validators.required])
+      })
 
     })
   }
