@@ -1,54 +1,36 @@
-<section class="h-screen flex items-center justify-center">
-    <div class="w-3/6 h-2/4  flex  justify-center shadow-lg">
-        <form ngDefaultControl [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" class="flex flex-col w-3/6 ">
-            <h3 class="font-serif font-normal text-3xl border-red">Login</h3>
+<section class="flex justify-center items-center min-h-screen">
+  <div class="box-border w-[500px] shadow-lg">
+    <h1 class="text-3xl text-center font-mono font-normal text-slate-500">Login</h1>
 
-            <div  formGroupName="details">
-
-                <div class="flex flex-col">
-                    <input class=" outline-0 mb-6 h-9  placeholder:pl-3  placeholder:italic
-                border-b border-solid border-black border-0" type="email" name="email" placeholder="Enter your email"
-                        formControlName="email">
-                    <small style="color: #ff0000;"
-                        *ngIf=" reactiveForm.get('details.email').errors && reactiveForm.get('details.email').errors['required']">
-                        Email is required</small>
-                    <small style="color: red;"
-                    *ngIf=" reactiveForm.get('details.email').errors && reactiveForm.get('details.email').errors['isEmailError']">
-                    Fuck you</small>
-                </div>
-
-                <div class="mt-5 flex flex-col ">
-                    <input class=" outline-0 mb-6 h-9  placeholder:pl-3  placeholder:italic border-b
-                border-solid border-black border-0" type="password" name="password" placeholder="Enter your passwod"
-                        formControlName="password">
-
-                    <small style="color: red;"
-                        *ngIf=" reactiveForm?.get('details.password').value && !reactiveForm?.get('details.password').valid">
-                        Password is not valid
-                    </small>
-                </div>
-
-            </div>
-
-            <!-- <label for="passwod">Password</label> -->
-
-
-
-
-
-
-
-
-            <!-- <label class="mb-3" for="email">Email</label> -->
-
-
-            <input class=" outline-0 w-1/5 h-8 rounded-lg bg-gray-200 font-light
-             border-none placeholder:font-mono shadow-md" type="submit" value="Submit" >
-        </form>
-
+    <div class="px-14">
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div class="w-full h-[60px] my-10 mx-auto">
+          <input class="pl-3 w-full h-full border-yellow-300 border-solid rounded-3xl " type="email" id="email"
+            name="email" placeholder="Enter your email" formControlName="email">
+        </div>
+        <div class="w-full h-[60px] my-10 mx-auto">
+          <input class="pl-3 w-full h-full border-yellow-300 border-solid rounded-3xl " type="email" id="email"
+            name="email" placeholder="Enter your password" formControlName="password">
+        </div>
+        <div class="text-center my-4">
+          <button [ngStyle]="{
+                'bg-black': !myForm.valid
+              }" class=" hover:bg-black p-2 h-9 w-1/5 rounded-2xl border-none bg-yellow-300 text-white font-bold"
+            type="submit">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="flex justify-center pb-6">
+      <span class="font-medium">
+        Don't have an Account?
+        <a routerLink="/task">Register</a>
+      </span>
     </div>
 
 
 
 
+  </div>
 </section>

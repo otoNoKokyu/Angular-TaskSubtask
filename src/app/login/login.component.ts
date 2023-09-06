@@ -1,5 +1,5 @@
 import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,26 +9,26 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit  {
   
   title = "ReactiveForms"
-  reactiveForm: FormGroup
+  myForm: FormGroup
 
+
+  constructor(private fb:  FormBuilder){}
 
   onSubmit(){
 
-    console.log(this.reactiveForm)
+    console.log(this.myForm.valid)
   }
-  emailValidator(email:FormControl){
-    if( email.value && email.value === "rumpa.dey@gmail.com") return {isEmailError:true }
-    return null
-  }
+  // emailValidator(email:FormControl){
+  //   if( email.value && email.value === "rumpa.dey@gmail.com") return {isEmailError:true }
+  //   return null
+  // }
   
   ngOnInit(): void {
-    this.reactiveForm = new FormGroup({
-      details: new FormGroup({
-        email: new FormControl("",[Validators.required, Validators.email, this.emailValidator]),
-        password: new FormControl("", [Validators.required])
-      })
+    this.myForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
 
-    })
   }
    
 }
