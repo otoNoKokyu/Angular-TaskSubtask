@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 const routes: Routes = [
   { path: '', component: LoginComponent }, // Default route
+  { path: 'signup', component: SignupComponent }, // Default route
   { path: 'task', component: TaskComponent }, // Default route
   { path: 'subtask/:id', component: SubTaskComponent },
 ];
