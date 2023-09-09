@@ -1,28 +1,44 @@
 <section class="flex justify-center items-center min-h-screen">
-    <div class="box-border w-500px">
-        <div>
-            <h1>Sign UP</h1>
+    <div class="box-border w-[700px] shadow-xl">
+        <div class="text-center font-mono font-semibold">
+            <h1>Sign uP</h1>
         </div>
-        <div>
-            <form action="">
-                <div class="flex gap-10">
-                    <input type="text">
-                    <input type="text">
+        <div class="px-14 pb-12 ">
+            <form [formGroup]="mySignupForm" (ngSubmit)="onSubmit()" >
+                <div class="flex gap-20 w-full my-9 ">
+                    <input class=" font-mono  w-1/2 h-11 border-b border-0 outline-none pl-3 text-base" 
+                    id="firstName"
+                    name="firstName"
+                    placeholder="first name" type="text"> 
+                    <input class=" font-mono w-1/2 h-11 border-b border-0 border-solid outline-none text-base  pl-3 "
+                    id="lastName"
+                    name="lastName"
+                     placeholder="last name" type="text">
                 </div>
-                <div class="w-full ">
-                    <input class="w-full" type="text">
+                <div class="w-full my-9">
+                    <input class=" font-mono  border-b border-0 h-11  w-98.5 pl-3 outline-none text-base" 
+                    placeholder="email" type="email">
                 </div>
-                <div>
-                    <input type="text">
+                <div class="my-9 w-full">
+                    <input class=" font-mono border-b border-0 h-11  w-98.5  pl-3 outline-none text-base"
+                     placeholder="phone" type="number">
                 </div>
-                <div>
-                    <input type="text">
+                <div class="my-9 w-full">
+                    <input class=" font-mono  border-b border-0 h-11  w-98.5 outline-none  pl-3 text-base"
+                     placeholder="country" type="text">
                 </div>
-                <div>
-                    <input type="text">
+                <div class="mb-9 w-full">
+                    <input class="font-mono border-b border-0 h-11  w-98.5 outline-none  pl-3 text-base"
+                    placeholder="password" type="password">
                 </div>
             </form>
         </div>
+        <div class="flex justify-center pb-6">
+            <span class="font-medium font-mono">
+              already have an Account?
+              <a routerLink="/">Login</a>
+            </span>
+          </div>
 
     </div>
 </section>

@@ -7,7 +7,12 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        '98.5': '98.4%',
+      },
+    },
   },
+
   plugins: [],
 }
