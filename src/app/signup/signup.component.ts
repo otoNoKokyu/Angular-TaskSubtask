@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -16,22 +16,32 @@ export class SignupComponent {
 
   onSubmit(){
 
-    console.log(this.mySignupForm.valid)
+    console.log(this.mySignupForm.value)
   }
-  // emailValidator(email:FormControl){
-  //   if( email.value && email.value === "rumpa.dey@gmail.com") return {isEmailError:true }
-  //   return null
-  // }
+  countryValidator(country: FormControl){
+    if( country.value && country.value !== "India") return {isCountryError:true }
+    return null
+  }
+  phoneValidator(phone: FormControl){
+    let sPhone = String(phone.value)
+
+    if( sPhone && (sPhone.length >10 || sPhone.length <10)) return {isPhoneError:true }
+    return null
+  }
   
   ngOnInit(): void {
     this.mySignupForm = this.fb.group({
       name: this.fb.group({
         firstName : ['', Validators.required],
-        lastNme: ['', Validators.required]
+        lastName: ['', Validators.required]
       }),
+      phone: ['', [Validators.required, this.phoneValidator]],
       email: ['', [Validators.required, Validators.email]],
+      country: ['', [Validators.required, this.countryValidator]],
       password: ['', [Validators.required]],
+      
     });
+
 
   }
 
