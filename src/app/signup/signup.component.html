@@ -6,12 +6,12 @@
         <div class="px-14 pb-12 ">
             <form [formGroup]="mySignupForm" (ngSubmit)="onSubmit()" >
                 <div formGroupName="name" class="flex gap-20 w-full my-9 ">
-                    <input class=" font-mono  w-1/2 h-11  border-0 outline-none pl-3 text-base" 
+                    <input class=" font-mono  w-1/2 h-11   border-0 outline-none pl-3 text-base" 
                     id="firstName"
                     name="firstName"
                     formControlName="firstName"
                     placeholder="first name" type="text"> 
-                    <input class=" font-mono w-1/2 h-11  border-0 border-solid outline-none text-base  pl-3 "
+                    <input class=" font-mono w-1/2 h-11  border-0  outline-none text-base  pl-3 "
                     id="lastName"
                     name="lastName"
                     formControlName="lastName"
@@ -37,6 +37,8 @@
                     <input class=" font-mono   border-0 h-11  w-98.5 outline-none  pl-3 text-base"
                     formControlName="country"
                      placeholder="country" type="text">
+                     <div *ngIf="mySignupForm.get('country').touched && mySignupForm.get('country').invalid  then validCountry "></div>
+
                 </div>
                 <div class="mb-9 w-full">
                     <input class="font-mono  border-0 h-11  w-98.5 outline-none  pl-3 text-base"
@@ -44,8 +46,9 @@
                     placeholder="password" type="password">
                 </div>
                 <div class="text-center my-4">
-                    <button  class=" hover:bg-black p-2 h-9 w-1/5 rounded-2xl border-none bg-blue-600 text-white font-bold"
-                      type="submit">
+                    <button  class="  hover:bg-black p-2 h-9 w-1/5 rounded-2xl border-none text-white font-bold  bg-blue-600"
+                    [class.bg-slate-500] = 'mySignupForm.invalid'
+                      type="submit" [disabled] = '!mySignupForm.valid'>
                       Submit
                     </button>
                   </div>
@@ -71,6 +74,9 @@
   </ng-template> 
    <ng-template #validPhone>
     <p class="my-4 text-base font-medium tracking-wider text-red-500">please provide valid phone no</p>
+  </ng-template>
+  <ng-template #validCountry>
+    <p class="my-4 text-base font-medium tracking-wider text-red-500">India is the only accepted country</p>
   </ng-template>
   
   <ng-template #noMessageTemplate>

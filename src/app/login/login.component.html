@@ -1,21 +1,20 @@
 <section class="flex justify-center items-center min-h-screen">
   <div class="box-border w-[500px] shadow-lg">
-    <h1 class="text-3xl text-center font-mono font-normal text-slate-500">Login</h1>
+    <h1 class="text-3xl text-center font-mono font-normal text-blue-600">Login</h1>
 
     <div class="px-14">
       <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
         <div class="w-full h-[60px] my-10 mx-auto">
-          <input class="pl-3 w-full h-full border-yellow-300 border-solid rounded-3xl " type="email" id="email"
+          <input class="pl-3 w-full h-full outline-none border-0 border-b text-sm font-mono" type="email" id="email"
             name="email" placeholder="Enter your email" formControlName="email">
         </div>
         <div class="w-full h-[60px] my-10 mx-auto">
-          <input class="pl-3 w-full h-full border-yellow-300 border-solid rounded-3xl " type="email" id="email"
+          <input class="pl-3 w-full h-full outline-none border-0 border-b  text-sm font-mono  " type="email" id="email"
             name="email" placeholder="Enter your password" formControlName="password">
         </div>
         <div class="text-center my-4">
-          <button [ngStyle]="{
-                'bg-black': !myForm.valid
-              }" class=" hover:bg-black p-2 h-9 w-1/5 rounded-2xl border-none bg-yellow-300 text-white font-bold"
+          <button class=" hover:bg-black p-2 h-9 w-1/5 rounded-2xl border-none bg-blue-600 text-white font-bold"
+          [disabled] = '!myForm.valid'
             type="submit">
             Submit
           </button>
@@ -23,7 +22,7 @@
       </form>
     </div>
     <div class="flex justify-center pb-6">
-      <span class="font-medium">
+      <span class="font-mono text-sm">
         Don't have an Account?
         <a routerLink="/signup">Register</a>
       </span>

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
+import { CustomValidators } from './validator';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -12,32 +16,27 @@ export class SignupComponent {
   mySignupForm: FormGroup
 
 
-  constructor(private fb:  FormBuilder){}
+  constructor(
+    private fb:  FormBuilder, 
+    private userService: UserService,
+    private router:  Router
+    
+    ){}
 
   onSubmit(){
+    this.userService.addUser(this.mySignupForm.value)
+    this.router.navigate([''])
+  }
 
-    console.log(this.mySignupForm.value)
-  }
-  countryValidator(country: FormControl){
-    if( country.value && country.value !== "India") return {isCountryError:true }
-    return null
-  }
-  phoneValidator(phone: FormControl){
-    let sPhone = String(phone.value)
-
-    if( sPhone && (sPhone.length >10 || sPhone.length <10)) return {isPhoneError:true }
-    return null
-  }
-  
   ngOnInit(): void {
     this.mySignupForm = this.fb.group({
       name: this.fb.group({
         firstName : ['', Validators.required],
         lastName: ['', Validators.required]
       }),
-      phone: ['', [Validators.required, this.phoneValidator]],
+      phone: ['', [Validators.required, CustomValidators.phoneValidator]],
       email: ['', [Validators.required, Validators.email]],
-      country: ['', [Validators.required, this.countryValidator]],
+      country: ['', [Validators.required, CustomValidators.countryValidator]],
       password: ['', [Validators.required]],
       
     });
