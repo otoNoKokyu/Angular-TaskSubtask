@@ -4,14 +4,14 @@
             <h1>Registration</h1>
         </div>
         <div class="px-14 pb-12 ">
-            <form [formGroup]="mySignupForm" (ngSubmit)="onSubmit()" >
-                <div formGroupName="name" class="flex gap-20 w-full my-9 ">
-                    <input class=" font-mono  w-1/2 h-11   border-0 outline-none pl-3 text-base" 
+            <form [formGroup]="mySignupForm" (ngSubmit)="onSubmit()" class="" >
+                <div formGroupName="name" class="z-[1000] md:flex md:flex-row md:gap-20 sm:flex sm:flex-col sm:gap-9  w-full my-9 ">
+                    <input class=" font-mono w-full  md:w-1/2   h-11   border-0 outline-none pl-3 text-base" 
                     id="firstName"
                     name="firstName"
                     formControlName="firstName"
                     placeholder="first name" type="text"> 
-                    <input class=" font-mono w-1/2 h-11  border-0  outline-none text-base  pl-3 "
+                    <input class=" font-mono w-full md:w-1/2 h-11  border-0  outline-none text-base  pl-3 "
                     id="lastName"
                     name="lastName"
                     formControlName="lastName"
